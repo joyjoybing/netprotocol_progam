@@ -1,0 +1,13 @@
+
+#CC=gcc
+CFLAGS = -Iadd -Isub -O2
+OBJS = add/add_int.o add/add_float.o sub/sub_int.o sub/sub_float.o main.o
+TAEGET = cacu
+RM=rm -f
+$(TAEGET):$(OBJS)
+#	$(CC) -o $(TAEGET) $^ $(CFLAGS)
+	$(CC) -o $@ $^ $(CFLAGS)
+$(OBJS):%.o:%.c
+	$(CC) $< -c $(CFLAGS) -o $@
+clean:
+	-$(RM) $(TARGET) $(OBJS) 
