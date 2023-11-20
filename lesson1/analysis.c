@@ -13,7 +13,7 @@
 int main()
 {
 	int sockfd;
-	//´´½¨Ô­Ê¼Ì×½Ó×Ö
+	//åˆ›å»ºåŽŸå§‹å¥—æŽ¥å­—
 	if ((sockfd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL))) < 0)
 	{
 		perror("socket");
@@ -26,22 +26,22 @@ int main()
 		char src_mac[6] = {};
 		char dest_mac[6] = {};
 		ret = recvfrom(sockfd, buf, sizeof(buf), 0, NULL, NULL);
-		//´Ó½ÓÊÕµ½µÄÊý¾ÝÖÐ»ñÈ¡Ô´macµØÖ·¡¢Ä¿µÄmacµØÖ·ÒÔ¼°ÀàÐÍ
+		//ä»ŽæŽ¥æ”¶åˆ°çš„æ•°æ®ä¸­èŽ·å–æºmacåœ°å€ã€ç›®çš„macåœ°å€ä»¥åŠç±»åž‹
 		sprintf(dest_mac, "%x:%x:%x:%x:%x:%x",buf[0], buf[1], buf[2], buf[3], buf[4], buf[5]);
 		sprintf(src_mac, "%x:%x:%x:%x:%x:%x",buf[6], buf[7], buf[8], buf[9], buf[10], buf[11]);
 		
 		printf("------------------mac----------------------\n");
 		printf("source mac:%s \n", src_mac);
 		printf("destination mac:%s\n", dest_mac);
-		//ÉÏÒ»²ãÊ¹ÓÃµÄÀàÐÍ
+		//ä¸Šä¸€å±‚ä½¿ç”¨çš„ç±»åž‹
 		unsigned short mac_type = ntohs(*(unsigned short*)(buf + 12));
 		if (mac_type == 0x800)
 		{
 			printf("****ip protocal****\n");
-			//È¡³öipÍ·²¿
+			//å–å‡ºipå¤´éƒ¨
 			struct ip* ip_header = (struct ip*)(buf+14);
-			printf("The total length of ip packet :%d\n", ip_header->ip_len);/* È¡³ötcpÊ×²¿ */
-			// ipÍ·²¿³¤¶È
+			printf("The total length of ip packet :%d\n", ip_header->ip_len);/* å–å‡ºtcpé¦–éƒ¨ */
+			// ipå¤´éƒ¨é•¿åº¦
 			unsigned int ip_header_lenth = (ip_header->ip_hl) << 2;
 			unsigned char ip_type = ip_header->ip_p;
 			if (ip_type == 1)
