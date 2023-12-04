@@ -92,10 +92,10 @@ int unpack(int sockfd, char *recv_pkt, struct sockaddr_in *src_addr, int size,
 
   if ((icmp->icmp_type == ICMP_TIME_EXCEEDED)) {
     tmp_addr = (struct sockaddr_in *)src_addr;
-    printf("%s\n", inet_ntoa(tmp_addr->sin_addr));
+    printf("%s", inet_ntoa(tmp_addr->sin_addr));
   } else if ((icmp->icmp_type == ICMP_ECHOREPLY) && (icmp->icmp_id == pid)) {
     tmp_addr = (struct sockaddr_in *)src_addr;
-    printf("%s\n", inet_ntoa(tmp_addr->sin_addr));
+    printf("%s", inet_ntoa(tmp_addr->sin_addr));
     return 1;
   }
   return 0;
@@ -161,7 +161,7 @@ int main(int argc, char **argv) {
     } else {
       memcpy(&(dst_addr.sin_addr), &(ipv4_addr.s_addr), sizeof(struct in_addr));
     }
-    printf("%d	", i + 1);
+    printf("\n%d	", i + 1);
     send_traceroute(sockfd, pid);
     ret = recv_traceroutes(sockfd, pid);
     close(sockfd);

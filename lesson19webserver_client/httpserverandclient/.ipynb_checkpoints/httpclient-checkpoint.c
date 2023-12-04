@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 
 
     //Connect to remote server
-    if (connect(socket_desc, (struct sockaddr *)&server, sizeof(server)) < 0) {
+    if (connect(socket_desc, (struct sockaddr *)&server, sizeof(server)) < 0)     {
         printf("connect error： %d", errno);
         return 1;
     }

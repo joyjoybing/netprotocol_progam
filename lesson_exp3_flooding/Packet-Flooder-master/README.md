@@ -70,7 +70,7 @@ Usage for: ./flood:
 Example:
 
 ```
-./flood --dev ens18 --dst 10.50.0.4 --port 80 -t 1 --interval 100000 --tcp --min 1200 --max 1200 -v
+./flood --dev ens33 --dst 10.30.18.13 --port 6918 -t 1 --interval 100000 --tcp --min 1200 --max 1200 -v
 ```
 
 ## Credits

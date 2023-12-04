@@ -33,7 +33,7 @@ int main(void)
 
     bzero(&clientaddr, sizeof(clientaddr));
     clientaddr.sin_family = AF_INET;
-    inet_pton(AF_INET, BROADCAST_IP, &clientaddr.sin_addr.s_addr);
+    inet_pton(AF_INET, BROADCAST_IP, &clientaddr.sin_addr.s_addr);//or 10.30.18.255
     clientaddr.sin_port = htons(CLIENT_PORT);
 
     int i = 0;
